@@ -4,6 +4,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+import Button from "../../components/button/button.component";
 const SignIn = () => {
   const logGoogleUser = async () => {
     const response = await signInWithGooglePopup();
@@ -14,7 +15,7 @@ const SignIn = () => {
   return (
     <div>
       <h1>Sign in page</h1>
-      <button onClick={logGoogleUser}> Sign in with google </button>
+      <Button onClick={logGoogleUser}> Sign in with google </Button>
       <SignUpForm />
     </div>
   );
