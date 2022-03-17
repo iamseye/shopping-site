@@ -2,7 +2,6 @@ import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import "./sign-in-form.styles.scss";
-
 import {
   authSignInWithEmailAndPassword,
   signInWithGooglePopup,
@@ -27,9 +26,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const response = await signInWithGooglePopup();
-    const userRef = await createUserDocumentFromAuth(response.user);
-    console.log(userRef);
+    await signInWithGooglePopup();
   };
 
   const handleSubmit = async (event) => {
