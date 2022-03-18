@@ -60,20 +60,19 @@ export const CartProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const newCartData = cartItems.reduce(
-      (acc, item) => {
-        const { price, quantity } = item;
-        const { cartCount, cartPrice } = acc;
-        return {
-          cartCount: cartCount + quantity,
-          cartPrice: cartPrice + price * quantity,
-        };
-      },
-      { cartCount: 0, cartPrice: 0 }
+    const newCartCount = cartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity,
+      0
     );
+    setCartCount(newCartCount);
+  }, [cartItems]);
 
-    setCartCount(newCartData.cartCount);
-    setTotalPrice(newCartData.cartPrice);
+  useEffect(() => {
+    const newTotalPrice = cartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity * cartItem.price,
+      0
+    );
+    setTotalPrice(newTotalPrice);
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
