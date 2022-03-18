@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import CartItem from "../components/cart-item/cart-item.component";
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -28,11 +29,14 @@ const removeCartItem = (cartItems, productToRemove, removeAll = false) => {
     return cartItems.filter((cartItem) => cartItem.id !== productToRemove.id);
   }
 
-  return cartItems.map((cartItem) =>
-    cartItem.id === productToRemove.id && cartItem.quantity > 0
-      ? { ...cartItem, quantity: cartItem.quantity - 1 }
-      : cartItem
-  );
+  return cartItems.reduce((acc, cartItem) => {
+    if (cartItem.id === productToRemove.id) {
+      if (cartItem.quantity - 1 !== 0) {
+        return [...acc, { ...cartItem, quantity: cartItem.quantity - 1 }];
+      }
+    }
+    return acc;
+  }, []);
 };
 
 export const CartContext = createContext({
