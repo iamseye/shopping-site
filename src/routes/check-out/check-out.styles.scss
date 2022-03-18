@@ -1,0 +1,12 @@
+.check-out-container {
+  .check-out-items {
+    .titles {
+      display: flex;
+      justify-content: space-between;
+    }
+    .price {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
