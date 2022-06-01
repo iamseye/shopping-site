@@ -1,10 +1,11 @@
-import {compose, createStore, applyMiddleware} from 'redux';
-//import logger from 'redux-logger';
+import { compose, createStore, applyMiddleware } from 'redux';
+// import logger from 'redux-logger';
 
-import {rootReducer} from "./root-reducer";
+import { rootReducer } from './root-reducer';
 
+// eslint-disable-next-line consistent-return
 const loggerMiddleware = (store) => (next) => (action) => {
-    if(!action.type) {
+    if (!action.type) {
         return next(action);
     }
     console.log('type', action.type);
@@ -13,7 +14,7 @@ const loggerMiddleware = (store) => (next) => (action) => {
 
     next(action);
     console.log('next state: ', store.getState());
-}
+};
 const middleWares = [loggerMiddleware];
 
 const composedEnhancers = compose(applyMiddleware(...middleWares));
